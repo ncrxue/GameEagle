@@ -1,8 +1,11 @@
 
 #include <iostream>
+#include <string>
 #include "creative_combat.h"
 
 using namespace std;
+
+void combat(string n,int a1, int a2, int b, int health);
 
 void creative_combat()
 {
@@ -163,11 +166,12 @@ void creative_combat()
     }
     
     }
-    void (name,atk1,atk2,blockval,hp);
+    combat(name,atkval1,atkval2,blockval,hp);
 
     return;
     }
-    void combat(string n,int a1, int a2, int b, int health)
+    
+void combat(string n,int a1, int a2, int b, int health)
     {
         string names[10] = { "Clement", "Liya","Osian","Charlie","Darsh","Yazmin","John","Nicholas","Rudy","Surya"};
         string name = n;
@@ -175,6 +179,6 @@ void creative_combat()
         int atk2 = a2;
         int block = b;
         int hp = health;
-        cout << n << a1 << a2 << b << hp;
+        cout << name << " " << atk1 << " " << atk2  << " " << block << " " << hp;
         
     }
