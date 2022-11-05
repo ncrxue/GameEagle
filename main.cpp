@@ -1,12 +1,13 @@
 #include <iostream>
+#include "creative_combat.h"
 
 using namespace std;
 
 int main() {
 
     cout << "This is our project, Game eagle for CutieHack 2022." << endl;
-    cout << "\x1B[93mTexting\033[0m" << endl;
     
+    creative_combat();
 
     return 0;
 }

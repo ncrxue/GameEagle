@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include "creative_combat.h"
 
 using namespace std;
 
@@ -162,6 +163,6 @@ void creative_combat()
     }
     
     }
-    return 0;
+    return;
     }
     
