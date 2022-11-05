@@ -163,6 +163,18 @@ void creative_combat()
     }
     
     }
+    void (name,atk1,atk2,blockval,hp);
+
     return;
     }
-    
+    void combat(string n,int a1, int a2, int b, int health)
+    {
+        string names[10] = { "Clement", "Liya","Osian","Charlie","Darsh","Yazmin","John","Nicholas","Rudy","Surya"};
+        string name = n;
+        int atk1 = a1;
+        int atk2 = a2;
+        int block = b;
+        int hp = health;
+        cout << n << a1 << a2 << b << hp;
+        
+    }
