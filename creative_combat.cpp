@@ -6,6 +6,9 @@
 #include <ctime>
 using namespace std;
 
+void combat(string n,int a1, int a2, int b, int health, int hval);
+
+
 void creative_combat()
 {
     
@@ -288,7 +291,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         if (hit && ehp > 0)
         {
             cout << ename << " Attacks for " << eatk << endl;
-            if (block <= atk)
+            if (block <= eatk)
             {
                 hp += block;
                 hp -= eatk;
@@ -340,7 +343,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         }
         if (hp <= 0)
         {
-            playing = false
+            playing = false;
             cout << name << " has been defeated by " << ename << " Game over!" << endl << "Score: " << pts;
             break;
         }
