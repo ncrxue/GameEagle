@@ -240,7 +240,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                     stamused = true;
                     if (ehp <= 0)
             {
-                cout << ename << " Has been defeated by" << name << endl;
+                
                 fighting = false;
                 break;
 
@@ -255,14 +255,14 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                     stamused = true;
                     if (ehp <= 0)
             {
-                cout << ename << " Has been defeated by" << name << endl;;
+                
                 fighting = false;
                 break;
             }
                 }
                 
             }
-            if (selection == 2)
+            else if (selection == 2)
             {
                 cout << "Enter 1 to block for " << block << endl;
                 cout << "Enter 2 to heal for " << healval << " at the cost of 12 Stam. " << endl;
@@ -298,9 +298,6 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                 hit = false;
             }
             else{
-
-            
-            hp -= eatk;
             hit = false;
             }
             if (hp <= 0)
@@ -339,13 +336,22 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
             stam +=10;
         }
         round ++;
-        
-        }
         if (hp <= 0)
         {
+            fighting = false;
             playing = false;
             cout << name << " has been defeated by " << ename << " Game over!" << endl << "Score: " << pts;
-            break;
+            
+        }
+        else if (ehp <= 0)
+        {
+            fighting = false;
+            cout << ename << " has been defeated by " << name << endl;
+            
+        }
+        }
+        
+
         }
         round = 0;
         hp = hpmax;
@@ -353,6 +359,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         atk2 = atk2max;
         stam = 15; 
         level++;
+        pts++;
         if (level == 2)
         {
             cout << "Congrats, you beat the final boss, your score is: " << pts << endl;
@@ -364,8 +371,9 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         srand(current_time);
         ename = names[(rand()%3)+(level*3)];
         eatk = 5 + (rand()%3 + (level*3));
+        ehp = 20 + (5+(rand()%3 * level) );
         cout << ename << " Attacks, " << name << " get ready to fight!" << endl;
-        playing = true;
+        fighting = true;
         
     }
     }    
