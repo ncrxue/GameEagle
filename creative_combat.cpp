@@ -2,10 +2,9 @@
 #include <iostream>
 #include <string>
 #include "creative_combat.h"
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
-
-void combat(string n,int a1, int a2, int b, int health);
 
 void creative_combat()
 {
@@ -21,7 +20,6 @@ void creative_combat()
     int healval = 3;
     bool creating = true;
     int selection;
-    int stamina = 15;
     
     cout << "Please name you're character: "; 
     cin >> name; // declares name
@@ -166,19 +164,194 @@ void creative_combat()
     }
     
     }
-    combat(name,atkval1,atkval2,blockval,hp);
+    combat(name,atkval1,atkval2,blockval,hp,healval);
 
     return;
     }
     
-void combat(string n,int a1, int a2, int b, int health)
+void combat(string n,int a1, int a2, int b, int health, int hval)
     {
+        time_t current_time = time(0);
+        srand(current_time);
+
         string names[10] = { "Clement", "Liya","Osian","Charlie","Darsh","Yazmin","John","Nicholas","Rudy","Surya"};
         string name = n;
+        string ename = names[rand()%3];
+        int level = 0;
         int atk1 = a1;
+        int atk1max = a1;
+        int atk2max = a2;
+        int healval = hval;
         int atk2 = a2;
         int block = b;
         int hp = health;
-        cout << name << " " << atk1 << " " << atk2  << " " << block << " " << hp;
+        int hpmax = hp;
+        int ehp = 20+(rand()%3);
+        int eatk = 5 + (rand()%3);
+        int round = 1;
+        int pts = 0;
+        int stam = 15;
+        bool fighting = true;
+        bool hit = false;
+        bool weaken = false;
+        bool deciding = false;
+        bool stamused = false;
+        int selection = 0;
+        cout << "Time to fight! your character, " << name <<" is suddenly attacked by "<< ename << "!" << endl;
+    while (playing){
+        while (fighting)
+        {
+            cout << "round " << round << endl;
+            cout << name << " HP: " << hp << "/"<<hpmax << " Stam: " << stam << endl;
+
+        time_t current_time = time(0);
+        srand(current_time);
+            if (rand()%10 > 3)
+            {
+            cout << ename << " HP: " << ehp << " plans to ATK for " << eatk <<"!" << endl;
+            hit = true;
+        }
+        else
+        {
+            cout << ename << " HP: " << ehp << " plans to weaken your ATK! "<< endl;
+            weaken = true;
+        }
+        deciding = false;
+        while (deciding == false)
+        {
+            cout << "Enter 1 to choose an ATK, 2 to choose a skill. Stam: " << stam<<endl;
+            cin >> selection;
+            if (selection == 1)
+            {
+                cout << "Enter 1 to Strike: " << atk1 << " ATK, 3 Stam." << endl;
+                cout << "Enter 2 to Heavyslash: " << atk2 << " ATK, 5 Stam." << endl;
+                cout << "Enter 3 to backout" << endl;
+                cin >> selection;
+                if (selection == 1)
+                {
+                    cout << name << " Strikes " << ename << " dealing " << atk1 << " damage!" << endl;
+                    ehp -= atk1;
+                    stam -= 2
+                    deciding = true;
+                    if (ehp <= 0)
+            {
+                cout << ename << " Has been defeated by" << name << endl;
+                fighting = false;
+                break;
+
+            }
+                }
+                else if(selection == 2)
+                {
+                    cout << name << " Heavyslashed " << ename << "dealing " << atk2 << " damage!" << endl;
+                    ehp -= atk2;
+                    stam -= 5;
+                    deciding = true;
+                    if (ehp <= 0)
+            {
+                cout << ename << " Has been defeated by" << name << endl;;
+                fighting = false;
+                break;
+            }
+                }
+                
+            }
+            if (selection == 2)
+            {
+                cout << "Enter 1 to block for " << block << endl;
+                cout << "Enter 2 to heal for " << healval << " at the cost of 12 Stam. " << endl;
+                cout << "Enter 3 to backout" << endl;
+                cin >> selection;
+                if (selection == 1)
+                {
+                    cout << name << " Blocks for " << block << endl;
+                    deciding = true;
+                }
+                else if (selection == 2)
+                {
+                    cout << name << " Heals for " << healval << endl;
+                    if (hp + healval >= hpmax)
+                    {
+                        hp = hpmax;
+                    }
+                    cout << name << " now has " << hp << "/" << hpmax << endl;
+                    deciding = true;
+                }
+
+            }
+        }
+        if (hit && ehp > 0)
+        {
+            cout << ename << " Attacks for " << eatk << endl;
+            if (block <= atk)
+            {
+                hp += block;
+                hp -= eatk;
+                hit = false;
+            }
+            else{
+
+            
+            hp -= eatk;
+            hit = false;
+            }
+            if (hp <= 0)
+            {
+                fighting = false;
+
+            }
+            else
+            {
+                cout << name << " now has " << hp << "/" << hpmax << endl;
+            }
+        }
+        else if (weaken)
+        {
+            cout << ename << " weakens " << name << " lowering their attack by 1" << endl;
+            atk1 -= 1;
+            atk2 -= 1;
+        }
         
+        if (stam < 0)
+        {
+            cout << name << " is hurt from over excretion taking "<< abs(stam) << " damage";
+            hp += stam; 
+        }
+        if (hp <= 0)
+            {
+    
+                fighting = false;
+
+            }
+        round ++;
+        
+        }
+        if (hp <= 0)
+        {
+            playing = false
+            cout << name << " has been defeated by " << ename << " Game over!" << endl << "Score: " << pts;
+            break;
+        }
+        round = 0;
+        hp = hpmax;
+        atk1 = atk1max;
+        atk2 = atk2max;
+        stam = 15; 
+        level++;
+        if (level == 2)
+        {
+            cout << "Congrats, you beat the final boss, your score is: " << pts << endl;
+            break;
+        
+        }
+        else{
+            time_t current_time = time(0);
+        srand(current_time);
+        ename = names[(rand()%3)+(level*3)];
+        eatk = 5 + (rand()%3 + (level*3));
+        cout << ename << " Attacks, " << name << " get ready to fight!" << endl;
+        
+    }
+    }    
+        return;
     }
