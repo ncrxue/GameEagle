@@ -362,9 +362,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         pts++;
         if (level == 2)
         {
-            cout << "Congrats, you beat the final boss, your score is: " << pts << endl;
-            break;
-        
+            cout << "Congrats, you beat the final boss, your score is: " << pts << endl;        
         }
         else{
             time_t current_time = time(0);
@@ -376,6 +374,6 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         fighting = true;
         
     }
+    return;
     }    
-        return;
-    }
+    
