@@ -233,6 +233,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                     ehp -= atk1;
                     stam -= 2
                     deciding = true;
+                    stamused = true;
                     if (ehp <= 0)
             {
                 cout << ename << " Has been defeated by" << name << endl;
@@ -247,6 +248,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                     ehp -= atk2;
                     stam -= 5;
                     deciding = true;
+                    stamused = true;
                     if (ehp <= 0)
             {
                 cout << ename << " Has been defeated by" << name << endl;;
@@ -266,6 +268,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                 {
                     cout << name << " Blocks for " << block << endl;
                     deciding = true;
+                
                 }
                 else if (selection == 2)
                 {
@@ -276,6 +279,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                     }
                     cout << name << " now has " << hp << "/" << hpmax << endl;
                     deciding = true;
+                    stamused = true;
                 }
 
             }
@@ -323,6 +327,13 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                 fighting = false;
 
             }
+        if (stamused)
+        {
+
+        }
+        else{
+            stam +=10;
+        }
         round ++;
         
         }
