@@ -206,18 +206,18 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         while (fighting)
         {
             cout << "round " << round << endl;
-            cout << name << " HP: " << hp << "/"<<hpmax << " Stam: " << stam << endl;
+            cout << name << endl<<" HP: " << hp << "/"<<hpmax << " Stam: " << stam << endl;
 
         time_t current_time = time(0);
         srand(current_time);
-            if (rand()%2 == 0) // 50-50 chance to either attack of weakene
+            if (rand()%3 != 0) // 66-33 chance to either attack of weakene
             {
-            cout << ename << " HP: " << ehp << " plans to ATK for " << eatk <<"!" << endl;
+            cout << ename <<endl<< " HP: " << ehp << " plans to ATK for " << eatk <<"!" << endl;
             hit = true;
         }
         else
         {
-            cout << ename << " HP: " << ehp << " plans to weaken your ATK! "<< endl;
+            cout << ename <<endl<< " HP: " << ehp << " plans to weaken your ATK! "<< endl;
             weaken = true;
         }
         deciding = false;
@@ -365,6 +365,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         ename = names[(rand()%3)+(level*3)];
         eatk = 5 + (rand()%3 + (level*3));
         cout << ename << " Attacks, " << name << " get ready to fight!" << endl;
+        playing = true;
         
     }
     }    
