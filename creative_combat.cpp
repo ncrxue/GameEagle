@@ -298,9 +298,6 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                 hit = false;
             }
             else{
-
-            
-            hp -= eatk;
             hit = false;
             }
             if (hp <= 0)
@@ -374,6 +371,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         srand(current_time);
         ename = names[(rand()%3)+(level*3)];
         eatk = 5 + (rand()%3 + (level*3));
+        ehp = 20 + (5+(rand()%3 * level) );
         cout << ename << " Attacks, " << name << " get ready to fight!" << endl;
         fighting = true;
         
