@@ -164,7 +164,7 @@ void creative_combat()
     }
     
     }
-    combat(name,atkval1,atkval2,blockval,hp,healval);
+    combat(name,atkval1,atkval2,blockval,hp,healval); // beings combat
 
     return;
     }
@@ -197,6 +197,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
         bool deciding = false;
         bool stamused = false;
         int selection = 0;
+        bool playing = true;
         cout << "Time to fight! your character, " << name <<" is suddenly attacked by "<< ename << "!" << endl;
     while (playing){
         while (fighting)
@@ -206,7 +207,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
 
         time_t current_time = time(0);
         srand(current_time);
-            if (rand()%10 > 3)
+            if (rand()%2 == 0) // 50-50 chance to either attack of weakene
             {
             cout << ename << " HP: " << ehp << " plans to ATK for " << eatk <<"!" << endl;
             hit = true;
@@ -217,7 +218,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
             weaken = true;
         }
         deciding = false;
-        while (deciding == false)
+        while (deciding == false) // player turn
         {
             cout << "Enter 1 to choose an ATK, 2 to choose a skill. Stam: " << stam<<endl;
             cin >> selection;
@@ -231,7 +232,7 @@ void combat(string n,int a1, int a2, int b, int health, int hval)
                 {
                     cout << name << " Strikes " << ename << " dealing " << atk1 << " damage!" << endl;
                     ehp -= atk1;
-                    stam -= 2
+                    stam -= 2;
                     deciding = true;
                     stamused = true;
                     if (ehp <= 0)
